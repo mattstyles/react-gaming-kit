@@ -15,7 +15,7 @@ storiesOf('Sprite', module)
       />
     </View>
   ))
-  .add('Asbolute', () => (
+  .add('Absolute', () => (
     <View>
       <Sprite
         url={sheet}

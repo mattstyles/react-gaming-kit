@@ -26,11 +26,16 @@ export const Sprite = styled('div')`
   `}
 `
 Sprite.propsTypes = {
+  // [u, v] for positioning in spritesheet
   u: PropTypes.number,
   v: PropTypes.number,
+  // id for spritesheet
   url: PropTypes.string.isRequired,
+  // size of image in spritesheet
   size: PropTypes.number,
+  // scale to render at
   scale: PropTypes.number,
+  // [x, y, z] position to render at
   x: PropTypes.number,
   y: PropTypes.number,
   z: PropTypes.number
