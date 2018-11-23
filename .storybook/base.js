@@ -1,5 +1,5 @@
 
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import oc from 'open-color'
 import { theme, GlobalStyle, mixins } from 'react-basic-kit'
 
@@ -33,7 +33,6 @@ export const App = styled('div')`
   }
 `
 
-// @TODO use theme from src
 export const Base = ({ children }) => (
   <ThemeProvider theme={theme}>
     <App>
