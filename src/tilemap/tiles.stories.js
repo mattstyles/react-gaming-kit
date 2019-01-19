@@ -4,6 +4,9 @@ import { storiesOf } from '@storybook/react'
 import { random } from 'lodash'
 
 import { Tilemap } from './tiles'
+import { Sprite } from '../sprite'
+
+import sheet from '../../assets/charb.png'
 
 // const map = [
 //   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -165,6 +168,23 @@ class FPSGen extends Component {
   }
 }
 
+const toSprite = ({ tile, position: [x, y], index }) => {
+  const scale = 4
+  const size = 8
+  const padding = 12
+  return (
+    <Sprite
+      url={sheet}
+      scale={scale}
+      size={8}
+      u={tile}
+      v={tile}
+      x={x * size * scale + padding}
+      y={y * size * scale + padding}
+    />
+  )
+}
+
 storiesOf('Tiles', module)
   .add('Tile map', () => (
     <Fragment>
@@ -176,6 +196,14 @@ storiesOf('Tiles', module)
       />
       <SmallSwitcher />
     </Fragment>
+  ))
+  .add('Tile map - sprites', () => (
+    <Tilemap
+      mapSize={size}
+      data={map}
+      toTile={toSprite}
+      tileSize={[8, 8]}
+    />
   ))
   .add('Refreshing', () => <RefreshTileMap />)
   .add('Refresh Switch', () => (
