@@ -11,6 +11,7 @@ export const to2d = (width) => (index) => ([
 const TileContainer = styled('div')`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
+  position: relative;
 `
 TileContainer.defaultProps = {
   width: 0,
