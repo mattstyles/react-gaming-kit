@@ -2,8 +2,34 @@
 import React, { Component, Fragment } from 'react'
 import { render } from 'react-dom'
 import { random } from 'lodash'
+import FPS from 'fps-now'
 
 import { Tilemap, StaticMap } from '../src/tilemap'
+
+class FPSCounter extends Component {
+  frame = null
+  fps = null
+
+  componentDidMount () {
+    this.fps = new FPS()
+    this.frame = window.requestAnimationFrame(this.onTick)
+  }
+
+  componentWillUnmount () {
+    if (this.frame) {
+      window.cancelAnimationFrame(this.frame)
+    }
+  }
+
+  onTick = () => {
+    this.fps.tick()
+    this.frame = window.requestAnimationFrame(this.onTick)
+  }
+
+  render () {
+    return null
+  }
+}
 
 const generate = (size) => {
   return new Array(size[0] * size[1])
@@ -11,7 +37,8 @@ const generate = (size) => {
     .map(() => random(0, 1))
 }
 
-const size = [32, 32]
+const size = [64, 64]
+// const size = [32, 32]
 // const size = [8, 8]
 var map = generate(size)
 const toTile = ({ tile, position: [x, y], index }) => {
@@ -81,6 +108,7 @@ class Root extends Component {
     const { isPaused } = this.state
     return (
       <Fragment>
+        <FPSCounter />
         <Button onClick={isPaused ? this.onStart : this.onStop}>
           {isPaused ? 'Start' : 'Stop'}
         </Button>
